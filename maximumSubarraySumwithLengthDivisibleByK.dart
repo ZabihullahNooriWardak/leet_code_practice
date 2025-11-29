@@ -1,4 +1,7 @@
 void main() {
+  // [-1,-2,-3,-4,-5]   k = 4 
+  // print [-10,-9,-7,-4]
+  //expected -10    mine : -4 
   maxSubarraySum([1, 2], 1);
 }
 
