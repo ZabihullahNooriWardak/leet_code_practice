@@ -1,6 +1,6 @@
 void main(){
 
-var test = [1,2,1,1,3];
+var test = [1,1,2,3,2,1,2];
 
   print(minimumDistance(test));
 
@@ -35,6 +35,10 @@ var test = [1,2,1,1,3];
 
    minimumDistances.sort();
 
+    if(minimumDistances.isEmpty){
+      return -1;
+    }
+    
     return minimumDistances[0];
   }
 
@@ -44,8 +48,27 @@ var test = [1,2,1,1,3];
    List<int> sums=[];
 
     for(int i =0;i<arr.length-2;i++){
-        int distance = (( arr[i]-arr[i+1]).abs()+(arr[i]-arr[i+2]).abs()+arr[i+1]-arr[i+2].abs());
-        print(distance);
+      int first = arr[i]-arr[i+1];
+
+      if(first<0){
+        first = first*-1;
+      }
+
+      int second = arr[i]-arr[i+2];
+
+      if(second <0){
+       second = second*-1;
+      }
+
+      int third = arr[i+1]-arr[i+2];
+
+      if(third<0){
+       third=  third*-1;
+      }
+ 
+
+   int distance = first+second+third;
+
         sums.add(distance);
     }
    
