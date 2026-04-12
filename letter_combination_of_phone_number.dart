@@ -1,4 +1,6 @@
-void main() {}
+void main() {
+  letterCombinations('234');
+}
 
 List<String> letterCombinations(String digits) {
   if (digits.isEmpty) {
@@ -19,6 +21,7 @@ List<String> letterCombinations(String digits) {
   List<String> result = [];
 
   void backTrack(int index, String path) {
+    print('this is index : $index and this is path : $path');
     if (index == digits.length) {
       result.add(path);
       return;
