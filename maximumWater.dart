@@ -1,6 +1,6 @@
 void main() {
   var arr = [1, 8, 6, 2, 5, 4, 8, 3, 7];
-  var arr1 = [1, 1];
+  // var arr1 = [1, 1];
   print(maxAreaa(arr));
   // print(maxArea(arr1));
   print(maxAreaa([8, 7, 2, 1])); //expected 7 but prints 3 . ok broh.
