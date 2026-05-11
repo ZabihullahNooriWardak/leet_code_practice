@@ -1,143 +1,200 @@
 void main() {
   print(threeSum([0, 0, 0, 0]));
 }
-//Solution but with time limit exceed 310/315 passed test cases . 
 
 List<List<int>> threeSum(List<int> nums) {
-  //
   nums.sort();
-
-  List<List<int>> triplets = [];
-
+  List<List<int>> valueForReturn = [];
   for (int i = 0; i < nums.length; i++) {
-    //
-
     if (i != 0 && nums[i] == nums[i - 1]) {
       continue;
     }
 
     int target = nums[i] * (-1);
 
-    if (i + 1 > nums.length - 1) continue;
+    int left = i + 1;
 
-    for (int j = i + 1; j < nums.length; j++) {
-      //
-      if (j + 1 > nums.length - 1) continue;
+    int right = nums.length - 1;
 
-      if (j != i + 1 && nums[j] == nums[j - 1]) {
-        continue;
-      }
+    while (left < right) {
+      // we escape the index of target
 
-      for (int k = j + 1; k < nums.length; k++) {
-        if (k != j + 1 && nums[k] == nums[k - 1]) {
-          continue;
-        }
+      if (nums[right] + nums[left] == target) {
+        List<int> temp = [];
+        temp.add(nums[i]);
+        temp.add(nums[right]);
+        temp.add(nums[left]);
+        valueForReturn.add(temp);
 
-        //
-        if (nums[j] + nums[k] == target) {
-          //
-          var temp = [nums[j], nums[k], target * (-1)];
+        left++;
 
-          // temp.sort();
-
-          triplets.add(temp);
-        }
+        right--;
+      } else if (nums[right] + nums[left] < target) {
+        left++;
+      } else if (nums[right] + nums[left] > target) {
+        right--;
       }
     }
   }
-  return triplets;
+  return valueForReturn;
 }
 
-// void main() {
-//   var result = threeSum([0, 0, 0, 0]);
-//   // [-4,-1,-1,0,1,2]
-//   print(result);
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Solution but with time limit exceed 310/315 passed test cases . 
 
 // List<List<int>> threeSum(List<int> nums) {
-//   List<List<int>> outPut = [];
-
+//   //
 //   nums.sort();
 
-//   int previous = nums[0];
+//   List<List<int>> triplets = [];
 
 //   for (int i = 0; i < nums.length; i++) {
+//     //
+
+//     if (i != 0 && nums[i] == nums[i - 1]) {
+//       continue;
+//     }
+
 //     int target = nums[i] * (-1);
 
-//     if (i == nums.length - 1) {
-//       break;
-//     }
+//     if (i + 1 > nums.length - 1) continue;
 
-//     List<int> subArr = nums.sublist(i + 1);
-//     // just for handling repeated number like : [0,0,0,0,0];
-//     var result = isMoreThanThreeSame(nums, i);
+//     for (int j = i + 1; j < nums.length; j++) {
+//       //
+//       if (j + 1 > nums.length - 1) continue;
 
-//     if (result) {
-//       var temp = [nums[i], nums[i], nums[i]];
-//       if (nums[i] == 0) {
-//         outPut.add(temp);
+//       if (j != i + 1 && nums[j] == nums[j - 1]) {
+//         continue;
 //       }
-//       continue;
-//     }
 
-//     if (nums[i] == previous && i != 0) {
-//       previous = nums[i];
-//       continue;
-//     }
+//       for (int k = j + 1; k < nums.length; k++) {
+//         if (k != j + 1 && nums[k] == nums[k - 1]) {
+//           continue;
+//         }
 
-//     findUniquePairs(subArr, target, outPut);
+//         //
+//         if (nums[j] + nums[k] == target) {
+//           //
+//           var temp = [nums[j], nums[k], target * (-1)];
 
-//     previous = nums[i];
-//   }
+//           // temp.sort();
 
-//   return outPut;
-// }
-
-// void findUniquePairs(List<int> arr, int target, List<List<int>> outPut) {
-//   int left = 0;
-
-//   int right = arr.length - 1;
-
-//   while (left < right) {
-//     int sum = arr[left] + arr[right];
-
-//     if (sum == target) {
-//       var temp = target * (-1);
-
-//       var forInsert = [temp, arr[left], arr[right]];
-
-//       outPut.add(forInsert);
-
-//       // Skip duplicates for left
-//       int currentLeft = arr[left];
-
-//       while (left < right && arr[left] == currentLeft) left++;
-
-//       // Skip duplicates for right
-//       int currentRight = arr[right];
-
-//       while (left < right && arr[right] == currentRight) right--;
-//     } else if (sum < target) {
-//       left++;
-//     } else {
-//       right--;
-//     }
-//   }
-// }
-
-// bool isMoreThanThreeSame(List<int> arr, int index) {
-//   var initial = arr[index];
-//   int counter = 1;
-//   for (int i = index + 1; i < arr.length; i++) {
-//     if (initial == arr[i]) {
-//       counter++;
-
-//       if (counter == 4) {
-//         return true;
+//           triplets.add(temp);
+//         }
 //       }
-//     } else {
-//       return false;
 //     }
 //   }
-//   return false;
+//   return triplets;
 // }
+
+// // void main() {
+// //   var result = threeSum([0, 0, 0, 0]);
+// //   // [-4,-1,-1,0,1,2]
+// //   print(result);
+// // }
+
+// // List<List<int>> threeSum(List<int> nums) {
+// //   List<List<int>> outPut = [];
+
+// //   nums.sort();
+
+// //   int previous = nums[0];
+
+// //   for (int i = 0; i < nums.length; i++) {
+// //     int target = nums[i] * (-1);
+
+// //     if (i == nums.length - 1) {
+// //       break;
+// //     }
+
+// //     List<int> subArr = nums.sublist(i + 1);
+// //     // just for handling repeated number like : [0,0,0,0,0];
+// //     var result = isMoreThanThreeSame(nums, i);
+
+// //     if (result) {
+// //       var temp = [nums[i], nums[i], nums[i]];
+// //       if (nums[i] == 0) {
+// //         outPut.add(temp);
+// //       }
+// //       continue;
+// //     }
+
+// //     if (nums[i] == previous && i != 0) {
+// //       previous = nums[i];
+// //       continue;
+// //     }
+
+// //     findUniquePairs(subArr, target, outPut);
+
+// //     previous = nums[i];
+// //   }
+
+// //   return outPut;
+// // }
+
+// // void findUniquePairs(List<int> arr, int target, List<List<int>> outPut) {
+// //   int left = 0;
+
+// //   int right = arr.length - 1;
+
+// //   while (left < right) {
+// //     int sum = arr[left] + arr[right];
+
+// //     if (sum == target) {
+// //       var temp = target * (-1);
+
+// //       var forInsert = [temp, arr[left], arr[right]];
+
+// //       outPut.add(forInsert);
+
+// //       // Skip duplicates for left
+// //       int currentLeft = arr[left];
+
+// //       while (left < right && arr[left] == currentLeft) left++;
+
+// //       // Skip duplicates for right
+// //       int currentRight = arr[right];
+
+// //       while (left < right && arr[right] == currentRight) right--;
+// //     } else if (sum < target) {
+// //       left++;
+// //     } else {
+// //       right--;
+// //     }
+// //   }
+// // }
+
+// // bool isMoreThanThreeSame(List<int> arr, int index) {
+// //   var initial = arr[index];
+// //   int counter = 1;
+// //   for (int i = index + 1; i < arr.length; i++) {
+// //     if (initial == arr[i]) {
+// //       counter++;
+
+// //       if (counter == 4) {
+// //         return true;
+// //       }
+// //     } else {
+// //       return false;
+// //     }
+// //   }
+// //   return false;
+// // }
